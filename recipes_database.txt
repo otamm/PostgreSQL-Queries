@@ -1,0 +1,71 @@
+#need to relate the recipe MARTINI with the ingredients: '2 oz gin', '1 oz dry vermouth',option ingredient of lemon peel/olive; the gin will be updated to '3 oz vodka' afterwards.
+
+#need to relate fried green tomatoes with the ingredients '3 large green tomatoes
+2 eggs
+1/2 cup milk
+1/2 cup breadcrumbs
+1 quart vegetable oil'
+
+#need to delete this whole entry:
+'Name: Green Eggs & Ham
+
+Yields 2 Servings
+Total Time: 25 minutes
+
+Ingredients:
+4 green eggs
+1/2 lb ham
+
+Directions:
+1. Cook the eggs.
+2. Cook the ham.
+3. Combine.'
+
+#also, insert them all with the INSERT command.
+
+CREATE TABLE ingredient(
+id serial,
+recipe_name varchar(50) NOT NULL,
+ingredient varchar(50) NOT NULL
+);
+
+CREATE TABLE recipe(
+id serial,
+name varchar(50) NOT NULL,
+description varchar(200) NOT NULL
+);
+
+INSERT INTO ingredients('Green Eggs & Ham','4 green eggs');
+INSERT INTO ingredients('Green Eggs & Ham','1/2 lb ham');
+
+INSERT INTO ingredients('Martini','2 oz gin');
+INSERT INTO ingredients('Martini','1 oz dry vermouth');
+INSERT INTO ingredients('Martini','(optional) lemon peel/olive');
+
+INSERT INTO ingredients('Fried Green Tomatoes','2 eggs');
+INSERT INTO ingredients('Fried Green Tomatoes','1/2 cup milk');
+INSERT INTO ingredients('Fried Green Tomatoes','1/2 cup breadcrumbs');
+INSERT INTO ingredients('Fried Green Tomatoes','1 quart vegetable oil');
+
+INSERT INTO recipe('Green Eggs & Ham','Cook the eggs.');
+INSERT INTO recipe('Green Eggs & Ham','Cook the ham.');
+INSERT INTO recipe('Green Eggs & Ham','Combine.');
+
+INSERT INTO recipe('Martini','Pour all ingredients into mixing glass with ice cubes.');
+INSERT INTO recipe('Martini','Stir well.');
+INSERT INTO recipe('Martini','Strain in chilled martini cocktail glass.');
+INSERT INTO recipe('Martini','Squeeze oil from lemon peel onto the drink, or garnish with olive.');
+
+INSERT INTO recipe('Fried Green Tomatoes','Slice the tomatoes 1/2 inch thick.');
+INSERT INTO recipe('Fried Green Tomatoes','Whisk eggs and milk together.');
+INSERT INTO recipe('Fried Green Tomatoes','Dip tomatoes in egg mixture and then bread crumbs.');
+INSERT INTO recipe('Fried Green Tomatoes','Heat oil in a large skillet.');
+INSERT INTO recipe('Fried Green Tomatoes','Fry the tomatoes in the oil.');
+
+UPDATE recipe SET description = '3 oz vodka' WHERE description = '2 oz gin' ;
+
+SELECT name, recipe_name FROM recipe, ingredients
+  JOIN ingredient WHERE ingredients.recipe_name = recipe.name;
+  DELETE recipe.name, recipe.ingredient WHERE recipe.name = 'Green Eggs & Ham';
+
+
